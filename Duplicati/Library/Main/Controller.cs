@@ -985,7 +985,7 @@ namespace Duplicati.Library.Main
                         throw new System.IO.IOException(Strings.Controller.SourceUnauthorizedError(inputsource));
                     }
 
-                    throw new System.IO.IOException(Strings.Controller.SourceIsMissingError(inputsource));
+                    throw new SourceMissingException(Strings.Controller.SourceIsMissingError(inputsource));
                 }
             }
 

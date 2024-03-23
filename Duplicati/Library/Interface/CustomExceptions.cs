@@ -20,6 +20,7 @@
 // DEALINGS IN THE SOFTWARE.
 
 using System;
+using System.IO;
 using Duplicati.Library.Localization.Short;
 
 namespace Duplicati.Library.Interface
@@ -200,5 +201,13 @@ namespace Duplicati.Library.Interface
         public RemoteListVerificationException(string message, string helpId, Exception innerException)
             : base(message, helpId, innerException)
         {}
+    }
+
+    [Serializable]
+    public class SourceMissingException : IOException
+    {
+        public SourceMissingException(string message) : base(message)
+        {
+        }
     }
 }

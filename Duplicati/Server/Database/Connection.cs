@@ -24,6 +24,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Duplicati.Server.Serialization.Interface;
 using System.Text;
+using Duplicati.Library.Interface;
 
 namespace Duplicati.Server.Database
 {
@@ -793,6 +794,10 @@ namespace Duplicati.Server.Database
 
         public void RegisterNotification(Serialization.NotificationType type, string title, string message, Exception ex, string backupid, string action, string logid, string messageid, string logtag, Func<INotification, INotification[], INotification> conflicthandler)
         {
+            // Do not log SourceMissingException
+            if (ex is SourceMissingException)
+                return;
+
             lock(m_lock)
             {
                 var notification = new Notification()
